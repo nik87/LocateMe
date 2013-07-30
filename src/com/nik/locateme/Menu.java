@@ -3,13 +3,16 @@ package com.nik.locateme;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Menu extends Activity {
+public class Menu extends Activity  {
 
 	DatePicker pickerDate;
 	TextView info;
@@ -43,5 +46,20 @@ public class Menu extends Activity {
 		});
 	}
 
-	
+	public boolean onCreateOptionsMenu(android.view.Menu menu){
+		super.onCreateOptionsMenu(menu);
+		MenuInflater awesome = getMenuInflater();
+		awesome.inflate(R.menu.main_menu, menu);
+		return true;
+	}
+	public boolean onOptionItemSelected(MenuItem item){
+		//switch falls eine weitere Option eingefuegt wird
+		switch(item.getItemId()){
+		case R.id.edit:
+			startActivity(new Intent("com.nik.locateme.DELETE"));
+			return true;
+		}
+		
+		return false;
+	}
 }
