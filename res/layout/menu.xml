@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/ListView1"
+        android:layout_width="wrap_content"
+        android:layout_height="113dp"
+        android:choiceMode="singleChoice"
+        android:entries="@array/Adressen" >
+</ListView>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="132dp" >
+
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <DatePicker 
+                android:id="@+id/pickerdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView 
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+    
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/FlyerNr"
+       />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/submit" />
+
+   
+
+</LinearLayout>
