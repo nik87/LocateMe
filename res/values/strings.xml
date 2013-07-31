@@ -8,5 +8,6 @@
     <string name="edit">Anschrift editieren</string>
     <string name="title_activity_delete">Delete</string>
     <string name="hello_world">Hello world!</string>
+    <string name="bt_changeDate">Datum ändern</string>
 
 </resources>

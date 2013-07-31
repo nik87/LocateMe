@@ -3,63 +3,114 @@ package com.nik.locateme;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.DateKeyListener;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Menu extends Activity  {
+public class Menu extends Activity implements OnClickListener  {
 
-	DatePicker pickerDate;
-	TextView info;
+	private DatePicker dppickerDate;
+	private TextView tvDisplayDate;
+	private Button btnChangeDate;
+	
+	private int year;
+	private int month;
+	private int day;
+	
+	
+	static final int DATE_DIALOG_ID = 999;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
 		
-		info = (TextView) findViewById(R.id.info);
-		pickerDate = (DatePicker) findViewById(R.id.pickerdate);
+		setCurrentDateOnView();
+		addListenerButton();
+	}
+	
+	private void setCurrentDateOnView() {
+		// TODO Auto-generated method stub
+		tvDisplayDate = (TextView) findViewById(R.id.info);
+		dppickerDate = (DatePicker) findViewById(R.id.pickerdate);
 		
-		Calendar today = Calendar.getInstance();
+		final Calendar calendar = Calendar.getInstance();
+		year = calendar.get(Calendar.YEAR);
+		month = calendar.get(Calendar.MONTH);
+		day = calendar.get(Calendar.DAY_OF_MONTH);
 		
-		pickerDate.init(today.get(Calendar.YEAR),
-				today.get(Calendar.MONTH),
-				today.get(Calendar.DAY_OF_MONTH),
-				new OnDateChangedListener() {
-			
+		//Datum in Textview
+		
+		tvDisplayDate.setText(new StringBuilder().append(month+1).append("-")
+				.append(day).append("-").append(year).append(" "));
+		
+		dppickerDate.init(year, month, day, null);
+	}
+	
+	private void addListenerButton() {
+		// TODO Auto-generated method stub
+		btnChangeDate = (Button) findViewById(R.id.btnChangeDate);
+		 
+		btnChangeDate.setOnClickListener(new OnClickListener() {
+ 
 			@Override
-			public void onDateChanged(DatePicker view, int year, int monthOfYear,
-					int dayOfMonth) {
-				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), "onDateChanged", Toast.LENGTH_SHORT).show();
-				
-				info.setText(
-						"Year: " + year + "\n" +
-						"Month of Year: " + monthOfYear + "\n" +
-						"Day of Month: " + dayOfMonth);
+			public void onClick(View v) {
+ 
+				showDialog(DATE_DIALOG_ID);
+ 
 			}
+ 
 		});
 	}
 
-	public boolean onCreateOptionsMenu(android.view.Menu menu){
-		super.onCreateOptionsMenu(menu);
-		MenuInflater awesome = getMenuInflater();
-		awesome.inflate(R.menu.main_menu, menu);
-		return true;
-	}
-	public boolean onOptionItemSelected(MenuItem item){
-		//switch falls eine weitere Option eingefuegt wird
-		switch(item.getItemId()){
-		case R.id.edit:
-			startActivity(new Intent("com.nik.locateme.DELETE"));
-			return true;
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case DATE_DIALOG_ID:
+		   // set date picker as current date
+		   return new DatePickerDialog(this, datePickerListener,year, month,day);
 		}
-		
-		return false;
+		return null;
 	}
+ 
+	private DatePickerDialog.OnDateSetListener datePickerListener 
+                = new DatePickerDialog.OnDateSetListener() {
+ 
+		// when dialog box is closed, below method will be called.
+		public void onDateSet(DatePicker view, int selectedYear,
+				int selectedMonth, int selectedDay) {
+			year = selectedYear;
+			month = selectedMonth;
+			day = selectedDay;
+ 
+			// set selected date into textview
+			tvDisplayDate.setText(new StringBuilder().append(month + 1)
+			   .append("-").append(day).append("-").append(year)
+			   .append(" "));
+ 
+			// set selected date into datepicker also
+			dppickerDate.init(year, month, day, null);
+ 
+		}
+	};
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(this, Delete.class);
+		startActivity(intent);
+	}
+
+	
 }
