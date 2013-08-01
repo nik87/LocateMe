@@ -97,8 +97,11 @@ public class Menu extends Activity implements OnClickListener {
 			day = selectedDay;
 
 			// set selected date into textview
-			tvDisplayDate.setText(new StringBuilder().append(month + 1)
-					.append("-").append(day).append("-").append(year)
+			tvDisplayDate.setText(new StringBuilder()
+					.append(day)
+					.append("-")
+					.append(month + 1)
+					.append("-").append(year)
 					.append(" "));
 
 			// set selected date into datepicker also
@@ -115,7 +118,7 @@ public class Menu extends Activity implements OnClickListener {
 		OutputStreamWriter writer = null;
 
 		try {
-			out = openFileOutput("Daten.csv", MODE_APPEND);
+			out = openFileOutput("Daten.csv", MODE_ENABLE_WRITE_AHEAD_LOGGING);
 			writer = new OutputStreamWriter(out);
 			writer.write("'das hier' ist wichtig");
 			writer.flush();
@@ -150,12 +153,16 @@ public class Menu extends Activity implements OnClickListener {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch(item.getItemId()){
 		case R.id.edit:
-			Intent intent = new Intent(this, Delete.class);
+			Intent intent = new Intent(this, Edit.class);
 			startActivity(intent);
 			return true;
+		
+		
+		case R.id.erase:
+			Intent intent2 = new Intent(this, Delete.class);
+			startActivity(intent2);
+			return true;
 		}
-		
 		return false;
-		
 	}
 }

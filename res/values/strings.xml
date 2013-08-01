@@ -2,12 +2,21 @@
 <resources>
 
     <string name="app_name">LocateMe</string>
-    <string name="action_settings">Settings</string>
+    <string name="erase">Adresse Löschen</string>
     <string name="title_activity_menu">Menu</string>
     <string name="submit">Speichern</string>
     <string name="edit">Anschrift editieren</string>
     <string name="title_activity_delete">Delete</string>
-    <string name="hello_world">Hello world!</string>
     <string name="bt_changeDate">Datum ändern</string>
+    <string name="title_activity_edit">Edit</string>
+    <string name="edit_string">Bitte tragen Sie hier die Adressen ein</string>
+    <string name="description">Name :</string>
+    <string name="streetName">Straße :</string>
+    <string name="streetName_edit">              </string>
+    <string name="hNumber">Hausnummer</string>
+    <string name="hNumber_edit">    </string>
+    <string name="postcode">PLZ</string> 
+    <string name="postcode_edit">     </string> 
+    <string name="btn_saveAdress">Adresse Spiechern</string>
 
 </resources>
