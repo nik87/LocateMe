@@ -11,5 +11,4 @@ public class Delete extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.delete);
 	}
-
 }
