@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!--
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="50dp" >
@@ -16,6 +17,12 @@
             android:entries="@array/Adressen" >
         </ListView>
     </ScrollView>
+    -->
+
+    <Spinner
+        android:id="@+id/spAdress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/info"
@@ -81,18 +88,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/submit"
-            android:textStyle="bold"
             android:layout_alignParentTop="true"
-            android:onClick="onClick" />
-
+            android:onClick="onClick"
+            android:text="@string/submit"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </LinearLayout>
